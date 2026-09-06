@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="InkPad — A premium note-taking app with stylus pen support, notebooks, and a built-in calendar." />
+  <title>InkPad — Smart Note-Taking & Canvas</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/main.css?v=10" />
+  <link rel="stylesheet" href="css/canvas.css?v=10" />
+  <link rel="stylesheet" href="css/calendar.css?v=10" />
+</head>
+<body>
+
+<!-- ======================================================
+     APP SHELL
+     ====================================================== -->
+<div id="app">
+
+  <!-- ===================== SIDEBAR ===================== -->
+  <aside id="sidebar">
+    <!-- Logo -->
+    <div class="sidebar-header">
+      <div class="logo-mark">🖊️</div>
+      <div class="logo-text">Ink<em>Pad</em></div>
+      <div id="save-indicator" title="Auto-saved"></div>
+    </div>
+
+    <!-- Main navigation -->
+    <nav class="sidebar-nav">
+      <button class="nav-item active" data-view="home">
+        <span class="nav-icon">✨</span> Home
+      </button>
+      <button class="nav-item" data-view="notebook">
+        <span class="nav-icon">📓</span> Notebooks
+      </button>
+      <button class="nav-item" data-view="calendar">
+        <span class="nav-icon">📅</span> Calendar
+      </button>
+      <button class="nav-item" data-view="dashboard">
+        <span class="nav-icon">📊</span> Dashboard
+      </button>
+    </nav>
+
+    <!-- Notebooks list (Only active in Notebook view) -->
+    <div class="notebooks-section" id="notebooks-sidebar-section">
+      <div class="section-header">
+        <span class="section-title">Folders & Notes</span>
+        <button class="icon-btn" id="add-folder-btn" title="New Folder">📁＋</button>
+        <button class="icon-btn" id="add-notebook-btn" title="New Notebook">📓＋</button>
+      </div>
+      <ul id="notebooks-list"></ul>
+    </div>
+
+    <!-- Footer actions -->
+    <div class="sidebar-footer">
+      <button class="footer-btn" id="btn-export-json" title="Export all data as JSON backup">
+        ⬇ Export
+      </button>
+      <button class="footer-btn" id="btn-import-json" title="Import from JSON backup">
+        ⬆ Import
+      </button>
+    </div>
+  </aside>
+
+  <!-- =================== MAIN CONTENT ================= -->
+  <main id="main-content">
+
+    <!-- =========== HOME / LANDING VIEW =========== -->
+    <div id="home-view" class="view active">
+      <header class="top-bar">
+        <button id="sidebar-toggle-home" title="Toggle sidebar" class="top-bar-icon-btn">☰</button>
+        <span class="top-bar-title">Welcome to InkPad</span>
+        <div class="top-bar-actions">
+          <button id="theme-toggle-home" title="Toggle theme" class="theme-btn">
+            <span class="theme-icon">☀️</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="home-content">
+        <!-- Hero Banner -->
+        <section class="hero-section fade-up">
+          <div class="hero-badge">🖊️ Touch & Stylus Ready • Notion + GoodNotes Hybrid</div>
+          <h1 class="hero-title">Handwriting & Notes,<br/><span>Beautifully Unified.</span></h1>
+          <p class="hero-subtitle">
+            Take notes using your touchscreen pen or keyboard, organize thoughts in digital notebooks, and link notes directly to your calendar.
+          </p>
+          <div class="hero-actions">
+            <button class="btn btn-primary btn-hero" id="home-create-nb">✨ Create Notebook</button>
+            <button class="btn btn-secondary btn-hero" id="home-open-cal">📅 Open Calendar</button>
+          </div>
+        </section>
+
+        <!-- Quick Start Templates -->
+        <section class="home-section fade-up">
+          <div class="section-heading">🚀 Quick Start Templates</div>
+          <div class="template-grid">
+            <div class="template-card" data-template="blank">
+              <div class="template-icon">📄</div>
+              <div class="template-title">Blank Page</div>
+              <div class="template-desc">Clean canvas for freeform drawing and typing.</div>
+            </div>
+            <div class="template-card" data-template="journal">
+              <div class="template-icon">📔</div>
+              <div class="template-title">Daily Journal</div>
+              <div class="template-desc">Reflect, track goals, and sketch daily ideas.</div>
+            </div>
+            <div class="template-card" data-template="meeting">
+              <div class="template-icon">📝</div>
+              <div class="template-title">Meeting Notes</div>
+              <div class="template-desc">Structured layout for action items and minutes.</div>
+            </div>
+            <div class="template-card" data-template="sketch">
+              <div class="template-icon">🎨</div>
+              <div class="template-title">Brainstorm Canvas</div>
+              <div class="template-desc">Infinite canvas feel for diagrams and mind maps.</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Features Showcase Grid -->
+        <section class="home-section fade-up">
+          <div class="section-heading">🌟 Key Features</div>
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon">✍️</div>
+              <h3>Pen & Touch Engine</h3>
+              <p>Pressure-sensitive stylus input with pen, highlighter, smooth eraser, and color palette.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">📚</div>
+              <h3>Notebooks & Pages</h3>
+              <p>Organize topics into color-coded notebooks with tabs, page reordering, and instant search.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">📆</div>
+              <h3>Date-Linked Notes</h3>
+              <p>Attach notes and sketches directly to calendar dates with monthly overview indicators.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">💾</div>
+              <h3>Offline Auto-Save</h3>
+              <p>All data stays secure in your browser. Export high-res PNGs or JSON full backups anytime.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- =========== FOLDER VIEW =========== -->
+    <div id="folder-view" class="view">
+      <header class="top-bar">
+        <button id="sidebar-toggle-folder" title="Toggle sidebar" class="top-bar-icon-btn">☰</button>
+        <span class="top-bar-title" id="folder-view-title">Folder</span>
+        <div class="top-bar-actions">
+          <button id="theme-toggle-folder" title="Toggle theme" class="theme-btn">
+            <span class="theme-icon">☀️</span>
+          </button>
+        </div>
+      </header>
+      <div class="folder-content">
+        <div class="folder-heading">
+          <div class="folder-heading-icon">📁</div>
+          <div>
+            <h1 id="folder-heading-name">Folder</h1>
+            <p id="folder-heading-subtitle">Notebooks in this folder</p>
+          </div>
+        </div>
+        <div id="folder-notebooks" class="folder-notebook-grid"></div>
+      </div>
+    </div>
+
+    <!-- =========== DASHBOARD VIEW =========== -->
+    <div id="dashboard-view" class="view">
+      <header class="top-bar">
+        <button id="sidebar-toggle" title="Toggle sidebar" class="top-bar-icon-btn">☰</button>
+        <span class="top-bar-title">Dashboard</span>
+        <div class="top-bar-actions">
+          <button id="theme-toggle" title="Toggle theme" class="theme-btn">
+            <span class="theme-icon">☀️</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="dashboard-content">
+        <div class="dashboard-greeting">
+          <div class="greeting-text" id="greeting-text">Good morning!</div>
+          <div class="greeting-sub" id="greeting-sub">Today is <span>loading…</span></div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-emoji">📓</div>
+            <div class="stat-value" id="stat-notebooks">0</div>
+            <div class="stat-label">Notebooks</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-emoji">📄</div>
+            <div class="stat-value" id="stat-pages">0</div>
+            <div class="stat-label">Pages</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-emoji">📅</div>
+            <div class="stat-value" id="stat-cal">0</div>
+            <div class="stat-label">Calendar Notes</div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <div>
+            <div class="section-heading">
+              📚 Recent Notebooks & Folders
+              <div style="display:flex;gap:6px;">
+                <button class="section-heading-action" id="dash-new-folder">📁 + Folder</button>
+                <button class="section-heading-action" id="dash-new-notebook">📓 + Notebook</button>
+              </div>
+            </div>
+            <div id="recent-notebooks"></div>
+          </div>
+
+          <div>
+            <div class="section-heading">📅 This Month</div>
+            <div id="mini-calendar"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========== NOTEBOOK VIEW =========== -->
+    <div id="notebook-view" class="view">
+      <header id="notebook-top-bar" class="top-bar">
+        <button id="sidebar-toggle-nb" title="Toggle sidebar" class="top-bar-icon-btn">☰</button>
+        <div id="notebook-breadcrumb">
+          <span id="notebook-breadcrumb-name" style="font-weight:700;">Notebook</span>
+          <span class="breadcrumb-sep">›</span>
+          <span id="notebook-breadcrumb-page" class="breadcrumb-page">Page</span>
+        </div>
+        <div class="top-bar-actions">
+          <button class="action-btn" id="btn-export-png" title="Export page as PNG">🖼️</button>
+          <button id="theme-toggle-nb" title="Toggle theme" class="theme-btn">
+            <span class="theme-icon">☀️</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Page tabs -->
+      <div id="page-tabs"></div>
+
+      <!-- Drawing/text toolbar -->
+      <div id="canvas-toolbar">
+        <!-- Mode -->
+        <div class="toolbar-group">
+          <button class="mode-btn active" id="mode-draw">✏️ Draw</button>
+          <button class="mode-btn" id="mode-text">T Text</button>
+        </div>
+
+        <!-- Pen tools -->
+        <div class="toolbar-group">
+          <button class="tool-btn active" id="tool-pen" data-tool="pen" title="Pen">🖊️</button>
+          <button class="tool-btn" id="tool-highlighter" data-tool="highlighter" title="Highlighter">🖌️</button>
+          <button class="tool-btn" id="tool-eraser" data-tool="eraser" title="Eraser">⬜</button>
+        </div>
+
+        <!-- Color presets + picker -->
+        <div class="toolbar-group">
+          <div class="color-presets">
+            <button class="color-preset active" data-color="#7c6ef0" style="background:#7c6ef0" title="Purple"></button>
+            <button class="color-preset" data-color="#e6edf3" style="background:#e6edf3" title="White/Light"></button>
+            <button class="color-preset" data-color="#f87171" style="background:#f87171" title="Red"></button>
+            <button class="color-preset" data-color="#4ade80" style="background:#4ade80" title="Green"></button>
+            <button class="color-preset" data-color="#60a5fa" style="background:#60a5fa" title="Blue"></button>
+            <button class="color-preset" data-color="#fbbf24" style="background:#fbbf24" title="Yellow"></button>
+            <button class="color-preset" data-color="#f472b6" style="background:#f472b6" title="Pink"></button>
+          </div>
+          <input type="color" id="color-picker" value="#7c6ef0" title="Custom color" />
+        </div>
+
+        <!-- Brush size -->
+        <div class="toolbar-group">
+          <input type="range" id="size-slider" min="1" max="20" value="3" title="Brush size" />
+          <span class="size-display" id="size-display">3</span>
+        </div>
+
+        <!-- Undo / Redo / Clear -->
+        <div class="toolbar-group" style="margin-left:auto;border-right:none;">
+          <button class="action-btn" id="btn-undo" title="Undo (Ctrl+Z)" disabled>↩</button>
+          <button class="action-btn" id="btn-redo" title="Redo (Ctrl+Y)" disabled>↪</button>
+          <button class="action-btn danger" id="btn-clear" title="Clear canvas">🗑</button>
+        </div>
+      </div>
+
+      <!-- Editor area: text layer + canvas on top -->
+      <div id="editor-area">
+        <div id="text-layer" contenteditable="true" spellcheck="true"></div>
+        <canvas id="drawing-canvas"></canvas>
+      </div>
+    </div>
+
+    <!-- =========== CALENDAR VIEW =========== -->
+    <div id="calendar-view" class="view">
+      <header class="calendar-top-bar top-bar">
+        <button id="sidebar-toggle-cal" title="Toggle sidebar" class="top-bar-icon-btn">☰</button>
+        <div class="cal-month-nav">
+          <button class="cal-nav-btn" id="cal-prev" title="Previous month">‹</button>
+          <h1 id="calendar-month-title">Month Year</h1>
+          <button class="cal-nav-btn" id="cal-next" title="Next month">›</button>
+        </div>
+        <button class="cal-today-btn" id="cal-today">Today</button>
+        <div style="margin-left:auto;display:flex;gap:8px;align-items:center;">
+          <button id="theme-toggle-cal" title="Toggle theme" class="theme-btn">
+            <span class="theme-icon">☀️</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="calendar-body">
+        <div id="calendar-grid"></div>
+
+        <aside id="calendar-note-panel">
+          <div class="panel-header">
+            <span id="cal-note-date">Select a date</span>
+            <button id="cal-close-panel" title="Close">✕</button>
+          </div>
+
+          <div id="cal-note-text" contenteditable="true" spellcheck="true"></div>
+
+          <div class="cal-canvas-label">✏️ Sketch</div>
+          <div class="cal-canvas-toolbar">
+            <button class="cal-tool-btn active" id="cal-tool-pen"         title="Pen">🖊️</button>
+            <button class="cal-tool-btn"        id="cal-tool-highlighter" title="Highlighter">🖌️</button>
+            <button class="cal-tool-btn"        id="cal-tool-eraser"      title="Eraser">⬜</button>
+            <input type="color" id="cal-color-picker" value="#7c6ef0" title="Color" />
+            <button class="cal-action-btn" id="cal-btn-undo"  title="Undo"  disabled>↩</button>
+            <button class="cal-action-btn" id="cal-btn-redo"  title="Redo"  disabled>↪</button>
+            <button class="cal-action-btn" id="cal-btn-clear" title="Clear">🗑</button>
+          </div>
+          <div class="cal-canvas-wrapper">
+            <canvas id="cal-drawing-canvas"></canvas>
+            <div class="cal-empty-hint">Draw something…</div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+  </main><!-- /#main-content -->
+</div><!-- /#app -->
+
+<!-- =================== MODAL =================== -->
+<div id="modal-backdrop">
+  <div class="modal" role="dialog" aria-modal="true">
+    <div class="modal-title" id="modal-title">Dialog</div>
+    <input class="modal-input" id="modal-input" type="text" placeholder="Enter name…" />
+    <select class="modal-input" id="modal-select" style="display:none;"></select>
+    <div class="modal-confirm-text" id="modal-confirm-text" style="display:none"></div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" id="modal-cancel">Cancel</button>
+      <button class="btn btn-primary"   id="modal-ok">OK</button>
+    </div>
+  </div>
+</div>
+
+<!-- =================== TOASTS ================== -->
+<div id="toast-container" aria-live="polite"></div>
+
+<!-- =================== SCRIPTS ================= -->
+<script src="js/storage.js"></script>
+<script src="js/canvas.js"></script>
+<script src="js/notebook.js"></script>
+<script src="js/calendar.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
+

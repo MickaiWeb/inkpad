@@ -1,0 +1,18 @@
+#page-tabs { display: flex; gap: 6px; overflow-x: auto; padding: 10px 30px 0; }
+.page-tab { border: 1px solid var(--border); border-bottom: 0; border-radius: 7px 7px 0 0; color: var(--muted); background: var(--surface); padding: 9px 14px; white-space: nowrap; }
+.page-tab.active { color: var(--text); border-color: var(--accent); }
+#canvas-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 10px 30px; border-block: 1px solid var(--border); background: var(--surface); }
+.toolbar-group { display: flex; align-items: center; gap: 4px; padding-right: 8px; border-right: 1px solid var(--border); }
+.mode-btn, .tool-btn { border-radius: 6px; padding: 7px 9px; font-size: 12px; }
+.mode-btn.active, .tool-btn.active { color: var(--text); background: var(--surface-3); }
+.color-presets { display: flex; gap: 4px; }
+.color-preset { width: 20px; height: 20px; border: 2px solid transparent; border-radius: 50%; }
+.color-preset.active { border-color: var(--text); }
+#color-picker, #cal-color-picker { width: 26px; height: 26px; border: 0; background: transparent; padding: 0; }
+#size-slider { width: 90px; accent-color: var(--accent); }
+.size-display { min-width: 16px; color: var(--muted); font-size: 12px; }
+#editor-area { position: relative; min-height: calc(100vh - 150px); overflow: auto; background-color: #151922; background-image: linear-gradient(rgba(139,124,246,.09) 1px, transparent 1px), linear-gradient(90deg, rgba(139,124,246,.09) 1px, transparent 1px); background-size: 24px 24px; }
+#drawing-canvas { display: block; width: 100%; min-height: 620px; touch-action: none; background: transparent; }
+#text-layer { position: absolute; z-index: 1; inset: 0; min-height: 620px; padding: 34px; color: #eef2f7; outline: none; white-space: pre-wrap; pointer-events: none; }
+#editor-area.text-mode #text-layer { pointer-events: auto; cursor: text; }
+#editor-area.draw-mode #drawing-canvas { cursor: crosshair; }
