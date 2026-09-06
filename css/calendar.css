@@ -17,6 +17,16 @@
 .panel-header { display: flex; justify-content: space-between; padding: 14px; border-bottom: 1px solid var(--border); font-weight: 700; }
 #cal-close-panel { border: 0; color: var(--muted); background: transparent; }
 #cal-note-text { min-height: 140px; padding: 14px; color: var(--text); outline: none; white-space: pre-wrap; }
+.calendar-events-section { padding: 0 14px 14px; border-top: 1px solid var(--border); }
+.calendar-events-heading { padding: 12px 0 8px; color: var(--muted); font-size: 12px; font-weight: 700; text-transform: uppercase; }
+.calendar-event { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+.calendar-event strong, .calendar-event small { display: block; }
+.calendar-event small { margin-top: 3px; color: var(--muted); }
+.event-delete-btn { padding: 3px; font-size: 17px; }
+.events-empty { padding: 0 0 8px; color: var(--muted); font-size: 12px; }
+.event-form { display: grid; gap: 6px; padding-top: 10px; }
+.event-input { width: 100%; border: 1px solid var(--border); border-radius: 6px; color: var(--text); background: var(--surface-2); padding: 8px; }
+.event-form .btn { padding: 8px 10px; font-size: 12px; }
 .cal-canvas-label { padding: 0 14px 8px; color: var(--muted); font-size: 12px; }
 .cal-canvas-toolbar { display: flex; align-items: center; gap: 4px; padding: 8px 14px; border-top: 1px solid var(--border); }
 .cal-tool-btn, .cal-action-btn { border: 0; border-radius: 5px; color: var(--muted); background: transparent; padding: 5px; }

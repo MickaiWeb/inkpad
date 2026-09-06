@@ -43,6 +43,12 @@ button { cursor: pointer; }
 .icon-btn { padding: 5px; font-size: 15px; }
 #notebooks-list { display: grid; gap: 3px; list-style: none; margin: 0; padding: 0 4px; }
 .notebook-list-item { border-radius: 7px; color: var(--muted); padding: 9px 10px; cursor: pointer; font-size: 13px; }
+.notebook-list-item { display: flex; align-items: center; gap: 6px; }
+.notebook-list-item > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.list-delete-btn, .event-delete-btn { border: 0; color: var(--muted); background: transparent; cursor: pointer; }
+.list-delete-btn { margin-left: auto; padding: 0 3px; font-size: 17px; line-height: 1; opacity: 0; }
+.notebook-list-item:hover .list-delete-btn, .notebook-list-item.active .list-delete-btn { opacity: 1; }
+.list-delete-btn:hover, .event-delete-btn:hover { color: var(--danger); }
 .notebook-list-item:hover, .notebook-list-item.active { background: var(--surface-2); color: var(--text); }
 .folder-list-item { font-weight: 700; }
 .folder-list-item.drop-target { outline: 1px dashed var(--accent); background: color-mix(in srgb, var(--accent) 16%, transparent); }
