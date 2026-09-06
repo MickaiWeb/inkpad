@@ -5,7 +5,6 @@ window.InkCalendar = (() => {
     const title = document.querySelector('#calendar-month-title');
     const year = shown.getFullYear();
     const month = shown.getMonth();
-    const todayKey = new Date().toISOString().slice(0, 10);
     title.textContent = shown.toLocaleDateString(undefined, { month: 'long', year: 'numeric' });
     grid.innerHTML = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => '<div class="calendar-weekday">' + day + '</div>').join('');
     const first = new Date(year, month, 1).getDay();
@@ -18,7 +17,7 @@ window.InkCalendar = (() => {
       const muted = number < 1 || number > days;
       const key = date.toISOString().slice(0, 10);
       const cell = document.createElement('button');
-      cell.className = 'calendar-day' + (muted ? ' muted' : '') + (key === todayKey ? ' today' : '');
+      cell.className = 'calendar-day' + (muted ? ' muted' : '');
       cell.innerHTML = '<span class="day-number">' + actual + '</span>';
       const events = InkStorage.data.calendar[key]?.events || [];
       events.slice(0, 3).forEach(event => {
